@@ -1,20 +1,43 @@
+// *=============================================================
+// * Dependencies
+// *=============================================================
 const express = require('express');
 const exphbs = require('express-handlebars');
-const bodyParser = require('body-parser');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 // Database
-const db = require('./config/database');
+const db = require('./models');
 
-// Test DB connection
-db.authenticate()
-    .then(() => console.log('Database connected successfully'))
-    .catch((err) => console.log('Error: ' + err));
-
+// Sets up the Express App
 const app = express();
+
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Static directory
+app.use(express.static('public'));
 
 app.get('/', (req, res) => res.send('INDEX'));
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 4848;
 
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+// Handlebars
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
+
+//* =============================================================
+//* Routes
+//* =============================================================
+require('./routes/wines')(app);
+
+//* =============================================================
+//* Syncing our sequelize models and then starting our Express app
+//* =============================================================
+//TODO force: true (remove before production)
+db.sequelize.sync().then(function () {
+    app.listen(PORT, function () {
+        console.log('App listening on PORT ' + PORT);
+    });
+});
