@@ -9,6 +9,7 @@ CREATE TABLE wines (
     style VARCHAR(20),
     description TEXT,
     rating INT,
+    consumed BOOLEAN DEFAULT false
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT NULL,
     PRIMARY KEY (id)

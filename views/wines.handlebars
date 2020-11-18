@@ -1,0 +1,11 @@
+<h1>Wine!</h1>
+
+<h2>Wine that is in my cellar</h2>
+
+<ul>
+  {{#each wines}}
+    {{#unless consumed}}
+      {{> wines/wine-block consumed=true}}
+    {{/unless}}
+  {{/each}}
+</ul>
