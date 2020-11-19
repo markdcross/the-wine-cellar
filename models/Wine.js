@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Wine = sequelize.define('Wine', {
-        wine: {
+        wine_name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
                 max: 5,
                 min: 0,
             },
+        },
+        consumed: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
         },
     });
 

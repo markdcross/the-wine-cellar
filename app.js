@@ -12,20 +12,29 @@ const db = require('./models');
 // Sets up the Express App
 const app = express();
 
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Handlebars
+app.engine(
+    'handlebars',
+    exphbs({
+        defaultLayout: 'main',
+        runtimeOptions: {
+            allowProtoPropertiesByDefault: true,
+            allowProtoMethodsByDefault: true,
+        },
+    })
+);
+app.set('view engine', 'handlebars');
 
 // Static directory
 app.use(express.static('public'));
 
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.get('/', (req, res) => res.send('INDEX'));
 
 const PORT = process.env.PORT || 4848;
-
-// Handlebars
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
 
 //* =============================================================
 //* Routes

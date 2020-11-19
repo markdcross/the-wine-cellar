@@ -1,11 +1,24 @@
 const db = require('../models');
 
 module.exports = (app) => {
-    app.get('/api/wines', (req, res) =>
+    app.get('/wines', (req, res) =>
         db.Wine.findAll({})
             .then((wines) => {
-                console.log(wines);
-                res.sendStatus(200);
+                const context = {
+                    contextWines: wines.map((wine) => {
+                        return {
+                            wine_name: wine.wine_name,
+                            winery: wine.winery,
+                            style: wine.style,
+                            description: wine.description,
+                            rating: wine.rating,
+                            consumed: wine.consumed,
+                        };
+                    }),
+                };
+                res.render('wines', {
+                    wines: context.contextWines,
+                });
             })
             .catch((err) => console.log(err))
     );

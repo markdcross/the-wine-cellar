@@ -1,11 +1,27 @@
-<h1>Wine!</h1>
-
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center headline">
+      <h1>Welcome to your personal Wine Cellar!</h1>
+      <h2>Look at all those bottles sitting there...<br>
+        <h3>Add to the collection, adn mark off when you enjoy a bottle!</h3>
+    </div>
+  </div>
 <h2>Wine that is in my cellar</h2>
 
 <ul>
   {{#each wines}}
     {{#unless consumed}}
+      {{> wines/wine-block consumed=false}}
+    {{/unless}} 
+  {{/each}} 
+</ul>
+
+<h2>Wine that I've already enjoyed</h2>
+
+<ul>
+  {{#each wines}}
+    {{#if consumed}}
       {{> wines/wine-block consumed=true}}
-    {{/unless}}
+    {{/if}}
   {{/each}}
 </ul>
