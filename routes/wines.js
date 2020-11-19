@@ -1,4 +1,7 @@
 const db = require('../models');
+const Wine = require('../models');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = (app) => {
     app.get('/wines', (req, res) =>
@@ -22,4 +25,82 @@ module.exports = (app) => {
             })
             .catch((err) => console.log(err))
     );
+
+    app.post('/wines/add', (req, res) => {
+        let {
+            wine_name,
+            winery,
+            style,
+            description,
+            rating,
+            consumed,
+        } = req.body;
+        console.log(req.body);
+        let errors = [];
+
+        // Validate Fields
+        if (!wine_name) {
+            errors.push({ text: 'Please add a name' });
+        }
+
+        if (!winery) {
+            errors.push({ text: 'Please add a winery' });
+        }
+
+        if (!style) {
+            errors.push({ text: 'Please add a style' });
+        }
+
+        if (!description) {
+            errors.push({ text: 'Please add a description' });
+        }
+
+        if (!rating) {
+            errors.push({ text: 'Please add a rating' });
+        }
+        if (!consumed) {
+            errors.push({ text: 'Please be honest... did you drink it?' });
+        }
+
+        // Check for errors
+        if (errors.length > 0) {
+            res.render('add', {
+                wine_name,
+                winery,
+                style,
+                description,
+                rating,
+                consumed,
+            });
+        } else {
+            // Make lowercase and remove space after comma
+            style = style.toLowerCase();
+
+            // Insert into table
+            db.Wine.create({
+                wine_name,
+                winery,
+                style,
+                description,
+                rating,
+                consumed,
+            })
+                .then((wine) => res.redirect('/wines'))
+                .catch((err) => console.log(err));
+        }
+    });
+
+    // Search by style
+    app.get('/wines/search', (req, res) => {
+        let { term } = req.query;
+        console.log(term);
+        // Make lowercase
+        term = term.toLowerCase();
+
+        db.Wine.findAll({
+            where: { style: { [Op.like]: '%' + term + '%' } },
+        })
+            .then((wines) => res.render('wines', { wines }))
+            .catch((err) => console.log(err));
+    });
 };
