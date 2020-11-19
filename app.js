@@ -28,17 +28,18 @@ app.set('view engine', 'handlebars');
 // Static directory
 app.use(express.static('public'));
 
-// Sets up the Express app to handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-app.get('/', (req, res) => res.send('INDEX'));
+// Body Parser
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 4848;
 
 //* =============================================================
 //* Routes
 //* =============================================================
+// Index route
+app.get('/', (req, res) => res.render('index', { layout: 'landing' }));
+
+// Wine routes
 require('./routes/wines')(app);
 
 //* =============================================================
