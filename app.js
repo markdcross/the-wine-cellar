@@ -13,15 +13,16 @@ const db = require('./models');
 const app = express();
 
 // Handlebars
+// TODO: Replace with EJS
 app.engine(
-    'handlebars',
-    exphbs({
-        defaultLayout: 'main',
-        runtimeOptions: {
-            allowProtoPropertiesByDefault: true,
-            allowProtoMethodsByDefault: true,
-        },
-    })
+  'handlebars',
+  exphbs({
+    defaultLayout: 'main',
+    runtimeOptions: {
+      allowProtoPropertiesByDefault: true,
+      allowProtoMethodsByDefault: true
+    }
+  })
 );
 app.set('view engine', 'handlebars');
 
@@ -45,7 +46,7 @@ require('./routes/wines')(app);
 //* Syncing our sequelize models and then starting our Express app
 //* =============================================================
 db.sequelize.sync().then(function () {
-    app.listen(PORT, function () {
-        console.log('App listening on PORT ' + PORT);
-    });
+  app.listen(PORT, function () {
+    console.log('App listening on PORT ' + PORT);
+  });
 });
