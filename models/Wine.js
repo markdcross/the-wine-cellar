@@ -1,46 +1,25 @@
-module.exports = (sequelize, DataTypes) => {
-    const Wine = sequelize.define('Wine', {
-        wine_name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1],
-            },
-        },
-        winery: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1],
-            },
-        },
-        style: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1],
-            },
-        },
-        description: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1],
-            },
-        },
-        rating: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                max: 5,
-                min: 0,
-            },
-        },
-        consumed: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
-    });
+// TODO Add Mongoose schema (look at fitness-tracker homework)
+const mongoose = require('mongoose');
 
-    return Wine;
-};
+const Schema = mongoose.Schema;
+
+const WineSchema = new Schema({
+  name: {
+    type: String
+  },
+  winery: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Winery'
+    }
+  ],
+  year: {
+    type: Number
+  }
+});
+
+// TODO Add association to winery model
+
+const Wine = mongoose.model('Wine', WineSchema);
+
+module.exports = Wine;
