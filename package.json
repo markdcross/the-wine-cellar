@@ -1,7 +1,7 @@
 {
     "name": "the-wine-cellar",
     "version": "1.0.0",
-    "description": "A wine tracking/logging with MySQL, Node, Express, Sequelize, and Handlebars. ",
+    "description": "A wine tracking/logging with MongoDB, Node, Express, Mongoose, and EJS. ",
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",

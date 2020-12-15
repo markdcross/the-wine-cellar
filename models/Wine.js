@@ -5,16 +5,35 @@ const Schema = mongoose.Schema;
 
 const WineSchema = new Schema({
   name: {
-    type: String
+    type: String,
+    trim: true,
+    required: 'Enter the name of the wine'
   },
   winery: [
     {
       type: Schema.Types.ObjectId,
+          trim: true,
+    required: 'Enter the name of the winery',
       ref: 'Winery'
     }
   ],
   year: {
     type: Number
+  },
+  style: {
+    type: String
+  },
+  description: {
+    type: String
+  },
+  rating: {
+    type: Number
+  },
+  num_bottles: {
+    type: Number
+  },
+  consumed: {
+    type: Boolean
   }
 });
 
