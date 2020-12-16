@@ -9,14 +9,12 @@ const BeerSchema = new Schema({
     trim: true,
     required: 'Enter the name of the beer'
   },
-  brewery: [
-    {
-      type: Schema.Types.ObjectId,
-      trim: true,
-      required: 'Enter the name of the brewery',
-      ref: 'Brewery'
-    }
-  ],
+  brewery: {
+    type: Schema.Types.ObjectId,
+    trim: true,
+    required: 'Enter the name of the brewery',
+    ref: 'Brewery'
+  },
   style: {
     type: String
   },

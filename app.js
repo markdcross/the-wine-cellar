@@ -6,6 +6,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
+const compression = require('compression');
 
 // Database
 const db = require('./models');
@@ -18,18 +19,16 @@ const PORT = process.env.PORT || 4848;
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(compression());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static('public'));
 
 //* =============================================================
 //* Routes
 //* =============================================================
-// HTML routes
 require('./routes/html-routes.js')(app);
-// Wine routes
-require('./routes/wines')(app);
+require('./routes/cellar')(app);
 
 //* =============================================================
 //* Connecting to Mongoose db and logging port
