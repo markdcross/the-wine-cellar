@@ -44,7 +44,7 @@ app.set('view engine', 'ejs');
 //* Routes
 //* =============================================================
 require('./routes/html-routes.js')(app);
-require('./routes/cellar')(app);
+require('./routes/api-routes.js')(app);
 
 //* =============================================================
 //* Server

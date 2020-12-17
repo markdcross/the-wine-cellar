@@ -10,10 +10,10 @@ const WineSchema = new Schema({
     required: 'Enter the name of the wine'
   },
   winery: {
-    type: Schema.Types.ObjectId,
+    type: String,
     trim: true,
-    required: 'Enter the name of the winery',
-    ref: 'Winery'
+    required: 'Enter the name of the winery'
+    // ref: 'Winery'
   },
   year: {
     type: Number

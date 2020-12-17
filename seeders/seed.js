@@ -10,6 +10,12 @@ mongoose.connect(
   }
 );
 
+const userSeed = [
+  {
+    user_name: 'Mark'
+  }
+];
+
 const beerSeed = [
   {
     beer_name: 'Nuclear Nugget',
@@ -67,6 +73,15 @@ const winerySeed = [
     region: 'Virginia'
   }
 ];
+
+db.User.deleteMany({})
+  .then(() => db.User.collection.insertMany(userSeed))
+  .then((data) => {
+    console.log(data.result.n + ' user records inserted!');
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 db.Beer.deleteMany({})
   .then(() => db.Beer.collection.insertMany(beerSeed))

@@ -3,22 +3,16 @@
   <div class="form-wrap">
     <h1>Add A Wine</h1>
     <p>Add a new wine to your cellar</p>
-    {{#each errors}}
-    <div class="error">
-      <p>ERRORS EVERYWHERE!</p>
-    </div>
-    {{/each}}
-    <form action="/wines/add" method="POST">
+    <form action="/wine/add" method="POST">
       <div class="input-group">
-        <label for="wine_name">Name of the wine</label>
+        <label for="name">Name of the wine</label>
         <input
           type="text"
-          name="wine_name"
+          name="name"
           id="wine_name"
           class="input-box"
           placeholder="How else will you know what to get?"
           maxlength="100"
-          value="{{ wine_name }}"
         />
       </div>
       <div class="input-group">
@@ -30,7 +24,17 @@
           class="input-box"
           placeholder="Or where you tried it"
           maxlength="100"
-          value="{{ winery }}"
+        />
+      </div>
+      <div class="input-group">
+        <label for="year">Year</label>
+        <input
+          type="text"
+          name="year"
+          id="year"
+          class="input-box"
+          placeholder="What is the vintage?"
+          maxlength="100"
         />
       </div>
       <div class="input-group">
@@ -42,7 +46,6 @@
           class="input-box"
           placeholder="Pinot Noir, Bordeaux, etc..."
           maxlength="100"
-          value="{{ style }}"
         />
       </div>
       <div class="input-group">
@@ -53,8 +56,7 @@
           class="input-box"
           placeholder="Describe the wine"
           rows="10"
-          >{{ description }}</textarea
-        >
+        ></textarea>
       </div>
       <div class="input-group">
         <label for="rating">Rating</label>
@@ -65,7 +67,17 @@
           class="input-box"
           placeholder="0-5"
           maxlength="100"
-          value="{{ style }}"
+        />
+      </div>
+      <div class="input-group">
+        <label for="rating">Bottles</label>
+        <input
+          type="text"
+          name="num_bottles"
+          id="rating"
+          class="input-box"
+          placeholder="How many bottles do you have on hand?"
+          maxlength="100"
         />
       </div>
       <div class="form-group consumedBtns">
