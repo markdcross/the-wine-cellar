@@ -29,13 +29,13 @@ mongoose.connect(
   }
 );
 
-db.User.create({ user_name: 'Mark Cross' })
-  .then((dbUser) => {
-    console.log(dbUser);
-  })
-  .catch(({ message }) => {
-    console.log(message);
-  });
+// db.User.create({ username: 'Mark Cross' })
+//   .then((dbUser) => {
+//     console.log(dbUser);
+//   })
+//   .catch(({ message }) => {
+//     console.log(message);
+//   });
 
 //* =============================
 //* Middleware

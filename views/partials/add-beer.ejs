@@ -1,0 +1,86 @@
+<section id="add" class="container">
+  <div class="form-wrap">
+    <h1>Add A Beer</h1>
+    <p>Add a new beer to your cellar</p>
+    <form action="/beer/add" method="POST">
+      <div class="input-group">
+        <label for="name">Name of the beer</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="input-box"
+          placeholder="How else will you know what to get?"
+          maxlength="100"
+        />
+      </div>
+      <div class="input-group">
+        <label for="brewery">Brewery</label>
+        <input
+          type="text"
+          name="brewery"
+          id="brewery"
+          class="input-box"
+          placeholder="Or where you tried it"
+          maxlength="100"
+        />
+      </div>
+      <div class="input-group">
+        <label for="style">Style</label>
+        <input
+          type="text"
+          name="style"
+          id="style"
+          class="input-box"
+          placeholder="Belgian, IPA, Sour..."
+          maxlength="100"
+        />
+      </div>
+      <div class="input-group">
+        <label for="description">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          class="input-box"
+          placeholder="Describe the wine"
+          rows="10"
+        ></textarea>
+      </div>
+      <div class="input-group">
+        <label for="rating">Rating</label>
+        <input
+          type="text"
+          name="rating"
+          id="rating"
+          class="input-box"
+          placeholder="0-5"
+          maxlength="100"
+        />
+      </div>
+      <div class="input-group">
+        <label for="rating">Bottles</label>
+        <input
+          type="text"
+          name="num_bottles"
+          id="rating"
+          class="input-box"
+          placeholder="How many bottles do you have on hand?"
+          maxlength="100"
+        />
+      </div>
+      <div class="form-group consumedBtns">
+        <label for="consumed">Have you tried it yet?</label><br />
+        <input
+          class="consumedBtns"
+          type="radio"
+          name="consumed"
+          value="1"
+          checked
+        />I couldn't help myself<br />
+        <input class="consumedBtns" type="radio" name="consumed" value="0" />
+        I'm saving it
+      </div>
+      <input type="submit" value="Add Beer" class="btn btn-reverse" />
+    </form>
+  </div>
+</section>
