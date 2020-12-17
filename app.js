@@ -7,22 +7,38 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const compression = require('compression');
-
-// Database
-const db = require('./models');
-
 // Sets up the Express App
 const app = express();
 
+// Port
 const PORT = process.env.PORT || 4848;
 
-app.set('view engine', 'ejs');
+//* =============================
+//* Database
+//* =============================
+// Require the models folder
+const db = require('./models');
 
+// Connecting to Mongoose db and logging port
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/winecellardb',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  }
+);
+
+//* =============================
+//* Middleware
+//* =============================
 app.use(logger('dev'));
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
 
 //* =============================================================
 //* Routes
@@ -31,14 +47,8 @@ require('./routes/html-routes.js')(app);
 require('./routes/cellar')(app);
 
 //* =============================================================
-//* Connecting to Mongoose db and logging port
+//* Server
 //* =============================================================
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workoutdb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-});
-
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
 });

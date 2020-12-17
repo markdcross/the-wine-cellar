@@ -1,8 +1,18 @@
 const db = require('../models');
 
 module.exports = (app) => {
+  // db.Cellar.create({ name: 'My Cellar' })
+  //   .then((winecellardb) => {
+  //     console.log(winecellardb);
+  //   })
+  //   .catch(({ message }) => {
+  //     console.log(message);
+  //   });
+
   app.get('/cellar', (req, res) =>
-    db.Cellar.findAll({})
+    db.User.find({})
+      .populate('beer')
+      .populate('wine')
       .then((cellar) => {
         res.json(cellar);
       })
@@ -10,6 +20,16 @@ module.exports = (app) => {
         res.json(err);
       })
   );
+
+  app.User.aggregate([
+    {
+      $lookup:{
+        from: "beer",
+        localField: "beer",
+        foreignField: "beer"
+      }
+    }
+  ])
 };
 
 // module.exports = (app) => {

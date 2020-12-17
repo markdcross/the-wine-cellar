@@ -10,11 +10,15 @@
 <h2>Wine that is in my cellar</h2>
 
 <ul>
-  {{#each wines}}
-    {{#unless consumed}}
-      {{> wines/wine-block consumed=false}}
-    {{/unless}} 
-  {{/each}} 
+  <% Wine.forEach(function(wine){ %>
+    <%- include('partials/wine', {wine: wine}); %>
+  <% }); %>
+</ul>
+
+<ul>
+  <% Beer.forEach(function(beer){ %>
+    <%- include('partials/beer', {beer: beer}); %>
+  <% }); %>
 </ul>
 
 <h2>Wine that I've already enjoyed</h2>

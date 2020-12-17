@@ -7,7 +7,7 @@ const BeerSchema = new Schema({
   name: {
     type: String,
     trim: true,
-    required: 'Enter the name of the beer'
+    required: 'Enter the name of the wine'
   },
   brewery: {
     type: Schema.Types.ObjectId,
@@ -31,8 +31,6 @@ const BeerSchema = new Schema({
     type: Boolean
   }
 });
-
-// TODO Add association to brewery model
 
 const Beer = mongoose.model('Beer', BeerSchema);
 

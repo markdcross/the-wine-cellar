@@ -1,7 +1,6 @@
 module.exports = {
-  Cellar: require('./Cellar'),
-  Wine: require('./Wine'),
   Winery: require('./Winery'),
+  Brewery: require('./Brewery'),
   Beer: require('./Beer'),
-  Brewery: require('./Brewery')
+  Wine: require('./Wine')
 };

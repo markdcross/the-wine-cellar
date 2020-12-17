@@ -35,8 +35,6 @@ const WineSchema = new Schema({
   }
 });
 
-// TODO Add association to winery model
-
 const Wine = mongoose.model('Wine', WineSchema);
 
 module.exports = Wine;
